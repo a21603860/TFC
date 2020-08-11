@@ -1,0 +1,162 @@
+<html>
+<head>
+	<!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title> Avaliações </title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+
+
+	<!--hh-->
+	<script type="text/javascript">
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light1", // "light2", "dark1", "dark2"
+	animationEnabled: false, // change to true		
+	title:{
+		text: "Basic Column Chart"
+	},
+	data: [
+	{
+		// Change type to "bar", "area", "spline", "pie",etc.
+		type: "column",
+		dataPoints: [
+			{ label: "apple",  y: 60  },
+			{ label: "orange", y: 15  },
+			{ label: "banana", y: 25  },
+			{ label: "mango",  y: 30  },
+			{ label: "grape",  y: 28  }
+		]
+	}
+	]
+});
+chart.render();
+
+}
+</script>  
+
+
+
+
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-top navbar-inverse navbar-transparente">
+
+        <div class="container">
+
+            <!-- header -->
+            <div class="navbar-header">
+
+                <!-- botao toggle -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#barra-navegacao">
+                    <span class="sr-only">alternar navegação</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="index.php" class="navbar-brand">
+                    <span class="img-logo"></span>
+                </a>
+
+            </div>
+
+            <!-- navbar -->
+            <div class="collapse navbar-collapse" id="barra-navegacao">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="">Noticias</a></li>
+                    <li><a href="">Perguntas</a></li>
+                    <li class="divisor" role="separator"></li>
+                    <li><a href="sobrenos.html">Sobre nós</a></li>
+                    <li><a href="contactos.html">contactos</a></li>
+                </ul>
+            </div>
+        </div><!-- /container -->
+    </nav><!-- /nav -->
+    
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" style="border: solid red 2px; margin-top: 17px;">
+
+				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+					<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+			
+			</div>
+
+		</div>
+	
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" style="border: solid green 2px; margin-top: 20px;">
+
+				<table class="table-active"">
+
+<thead style="background-color: #f0f0f0;">
+  
+  <tr>
+  	<th scope="col">Stakeholder</th>
+    <th scope="col">FCS</th>
+    <th scope="col">Ponderação</th>
+    <th scope="col">Área de Influência</th>
+
+  </tr>
+  
+  </thead>
+  
+  <tbody>
+  <tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+    <td>$100</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+    <td>$150</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Joe</td>
+    <td>Swanson</td>
+    <td>$300</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Cleveland</td>
+    <td>Brown</td>
+    <td>$250</td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
+			
+			</div>
+
+		</div>
+	
+	</div>
+
+	
+	
+
+
+
+
+  
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

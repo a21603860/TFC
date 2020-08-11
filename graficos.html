@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>painel
+    </title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="estilo.css" rel="stylesheet">
+
+
+    <script>
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                exportEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Top Factores Críticos de Sucesso"
+                },
+                data: [{
+                    type: "pie",
+                    startAngle: 25,
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabelFontSize: 16,
+                    indexLabel: "{label} - {y}%",
+                    dataPoints: [
+                        { y: 51.08, label: "O gestor do sistema deverá ter permissão para atualizar o sistema a cada 6 meses, à fim de melhorar a perfomance." },
+                        { y: 27.34, label: "Manter ou aumentar o número de clientes a cada 6 meses" },
+                        { y: 10.62, label: "Cumprir com as diversas normas de ética que regem a região em questão " },
+                        { y: 5.68, label: "O sistema deverá estar operacional a 80% do tempo" },
+                        { y: 5.07, label: "Deverão existir versões de Back-ups do sistema" },
+                       
+                    ]
+                }]
+            });
+            chart.render();
+
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-fixed-top navbar-inverse navbar-transparente">
+
+        <div class="container">
+
+            <!-- header -->
+            <div class="navbar-header">
+
+                <!-- botao toggle -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#barra-navegacao">
+                    <span class="sr-only">alternar navegação</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="index.html" class="navbar-brand">
+                    <span class="img-logo"></span>
+                </a>
+
+            </div>
+
+            <!-- navbar -->
+            <div class="collapse navbar-collapse" id="barra-navegacao">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="graficos.html">Graficos</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li><a href="fcs.html">FCS</a></li>
+                    <li><a href="">Contactos</a></li>
+                </ul>
+            </div>
+        </div><!-- /container -->
+    </nav><!-- /nav -->
+
+
+    <section style="margin-top: 100px"> 
+
+        <div class="container">
+            <div class="row" style=" margin-top: 20px;">
+
+
+
+                <button type="button" class="btn btn-custom btn-index btn-lg" data-toggle="modal"
+                    data-target="#EnviarSolicitacao" style="margin-left: 20%">
+                    Criação de Stakeholder e FCS
+                </button>
+
+
+
+                <a href="fcs.html" class="btn btn-custom btn-index btn-lg" style="margin-left: 10%">Atribuição da
+                    Ponderação</a>
+
+
+            </div>
+
+        </div>
+
+        <form class="modal fade" id="EnviarSolicitacao" style="margin-top: 100px">
+
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <!-- cabecalho -->
+                    <div class="modal-header" style="color: white;background: rgba(0, 0, 175,0.5);">
+                    </div>
+
+                    <!-- corpo -->
+                    <div class="modal-body">
+
+                        <form method="POST" action="criarFCS.php" id="RegistroFCS">
+
+                            <div class="form-group col-md-10">
+                                <label for="fcs">descricao</label>
+                                <input type="text" class="form-control" id="fcs" name="fcs"
+                                    required="requiored">
+                            </div>
+
+
+
+                            <div class="form-group col-md-10">
+                                <label for="stackholder">Ponderacao</label>
+                                <input type="text" class="form-control" id="stackholder" name="stackholder"
+                                    required="ponderacao">
+                            </div>
+
+
+                            <button type="button" class="btn" style="margin-top: 100px;">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+
+
+                            <button type="submit" class=" btn btn-index btn-md form-control"
+                                style=" margin-left: 0%; margin-top: 10px;">Criar FCS</button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+         
+
+        </form>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 100px; border: #343444 1px solid">
+
+                    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

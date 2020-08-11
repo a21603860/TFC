@@ -1,0 +1,7 @@
+{
+    "files.autoSave": "onWindowChange",
+    "javascript.suggest.completeFunctionCalls": true,
+    "typescript.suggest.completeFunctionCalls": true,
+    "editor.tabCompletion": "on",
+    "emmet.triggerExpansionOnTab": true
+}

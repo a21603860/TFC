@@ -237,7 +237,7 @@
 		<br>
 
 		
-	  		<div class="container col-md-10 marcador1">
+	  		<div class="container col-md-12 marcador1">
 
 			
 
@@ -250,6 +250,10 @@
 							<th scope>id</th>
 
 							<th scope>nome</th>
+
+							<th scope>custo</th>
+
+							<th scope>datainicio</th>
 
 							<th scope>descricao</th>
 
@@ -278,7 +282,7 @@
 
 						while($row = $result-> fetch_assoc()){
 
-							echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["descricao"]. "</td><td>". $row["tipo"]. "</td><td>". $row["prioridade"]. "</td><td>". $row["acao"]. "<button class ='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>editar</button><button class ='btn btn-danger badge badge-pill'>apagar<a href='apagardb.php'></a></button>";
+							echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["custo"]. "</td><td>". $row["datainicio"]. "</td><td>". $row["descricao"]. "</td><td>". $row["tipo"]. "</td><td>". $row["prioridade"]. "</td><td>". $row["acao"]. "<button class ='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>editar</button><button class ='btn btn-danger badge badge-pill'>apagar</button>";
 						}
 						
 					}

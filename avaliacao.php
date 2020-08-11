@@ -100,7 +100,20 @@
 
         <div class="col-md-5 marcador1">
           
-        
+        <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="imagens/2.jpg" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
 
         </div>
 
@@ -115,6 +128,28 @@
                 <div class="col-sm-10">
 
                   <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome do Requisito">
+           
+                </div>
+            </div>
+
+            <div class="form-group row espaco">
+
+              <label for="Input1" class="col-sm-2 col-form-label">custo</label>
+
+                <div class="col-sm-10">
+
+                  <input type="number" class="form-control" id="custo" name="custo" placeholder="Insira o custo do Requisito">
+           
+                </div>
+            </div>
+
+            <div class="form-group row espaco">
+
+              <label for="Input1" class="col-sm-2 col-form-label">datainicio</label>
+
+                <div class="col-sm-10">
+
+                  <input type="date" class="form-control" id="datainicio" name="datainicio" >
            
                 </div>
             </div>

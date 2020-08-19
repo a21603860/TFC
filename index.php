@@ -1,3 +1,9 @@
+<?php
+    
+    include_once'connection.php';
+	include_once'index.php';
+?>
+
 <!DOCTYPE HTML>
 <html lang="pt-pt">
 	<head>
@@ -8,6 +14,7 @@
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -95,6 +102,7 @@
 				<h2>Log In</h2>
 					</br>
 
+					
 					<form method="post" action="validar_acesso.php" id="formLogin">
 
 						<div class="form-group ">
@@ -109,10 +117,16 @@
 								
 						</div>
 								
-						<button type="buttom" class="btn btn-primary" id="btn_login">Entrar</button>						
-						<br></br>		
-					</form>
+						<button  class="btn btn-primary" id="btn_login" name="login">Entrar</button>						
+						<br></br>	
 
+						<?php
+						
+						?>
+						
+
+					</form>
+					
 			</div>
 			
 			<div class="col-lg-4 order-1 order-lg-2 " data-aos="fade-left" data-aos-delay="200">

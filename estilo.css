@@ -76,7 +76,20 @@
 
 }
 
+.wrapper{
 
+	width:50px;
+	margin: left;
+	background-color: green;
+}
+
+.profile_user_pic{
+
+	float: none;
+	margin: 0 auto;
+	width:50%;
+	height: 50%;
+}
 
 
 

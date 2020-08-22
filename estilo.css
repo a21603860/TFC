@@ -37,6 +37,11 @@
 	
 }
 
+.car{
+	height: 150px;
+	width: 220px;	
+}
+
 
 .monospace{
 	font-family:"Lucida Console", Courier, monospace;

@@ -60,13 +60,14 @@
 			 
 	        </div>
 	        
-	        <ul class="navbar-nav">
+	        <ul class="navbar-nav ml-auto">
 
 	            <li class="nav-item">
 					
 					<a class="nav-link" href="inscrevase.php" >Inscrever-se</a>
 				
 				</li>
+				
 	            
 	        </ul>
 	        

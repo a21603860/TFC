@@ -107,6 +107,13 @@
 
 					</div>
 
+					<div class="form-group">						
+						
+						<input type="file" class="form-control" id="img" name="img" required="requiored">						
+					
+					</div>
+					<br>
+
 					<div class="form-group row">
 
               			<label for="Select1" class="col-sm-2 col-form-label">Função</label>

@@ -1,5 +1,7 @@
 <?php
+	include_once'connection.php';
 	
+	session_start();
 	
 	
 ?>
@@ -38,7 +40,7 @@
     
   <nav class="navbar navbar-expand-lg cor rcorners ">    
     
-    <div class="container navbar-header" id="navbarNav">
+    <div class="container navbar-header " id="navbarNav">
 
       <div class="navbar-header ">
 
@@ -86,12 +88,12 @@
 
     <div class="row ">
 
-      <div class="col-md-3 marcador1">
+      <div class="col-md-3 marcador1 ">
         
         <br>
 
         <div class="list-group">
-          <a href="#" class="cor3 list-group-item">
+          <a href="#dashboard" class="cor3 list-group-item">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grid-1x2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5z"/>
           </svg>  Dashboard
@@ -99,7 +101,7 @@
         </div>
 
         <div class="list-group">          
-          <a href="#" class="cor3 list-group-item ">        
+          <a href="#projeto" class="cor3 list-group-item ">        
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
           </svg> Projeto  
@@ -107,7 +109,7 @@
         </div>
 
         <div class="list-group">
-          <a href="#" class="cor3 list-group-item ">
+          <a href="#definiçao" class="cor3 list-group-item ">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
           </svg> Definições
@@ -115,7 +117,7 @@
         </div>
 
         <div class="list-group">
-        <a href="#" class="cor3 list-group-item ">
+        <a id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" class="cor3 list-group-item ">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
         </svg> Equipas
@@ -124,26 +126,210 @@
 
       </div>
 
-      <div class="col-md-8 marcador1 column-gap">
+      <div class="col-md-9 marcador1 ">
+        
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item active">
+            <a class="nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+          </li>
+        </ul>
 
-        <div class="card border border-dark" style="width: 22rem;">
-          <div class="card-body" href="#">
-            <h3 class="card-title ">
-            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
-            </svg>
-            </h3>
-            <h2><p class="card-text monospace">Projeto</p></h2>
+        <div class="tab-content" id="pills-tabContent">
+
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body pb-0">
+                  <div class="d-flex justify-content-between">
+                    <h4 class="card-title mb-0">Total de Requisitos</h4>
+                  </div>
+                  <h3 class="font-weight-medium mb-4">52</h3>
+                </div>
+                <canvas class="mt-n4" height="90" id="total-revenue"></canva>
+              </div>
+            </div>
+
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body pb-0">
+                  <div class="d-flex justify-content-between">
+                    <h4 class="card-title mb-0">Total de Projectos</h4>
+                  </div>
+                  <h3 class="font-weight-medium">15</h3>
+                </div>
+                  <canvas class="mt-n3" height="90" id="total-transaction"></canva>
+              </div>
+            </div>
+	  	
+
           </div>
+          
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          
+            ...  
+                    
+          </div>
+          
+          
+          <div class="tab-pane fade " id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">    
+
+            ...
+
+          </div>
+        
         </div>
+      
+      </div>
+      
+            
+      <div class="container col-lg-12 marcador5  espaco">
 
-        <div class="car border border-dark">        
-        </div>
+	  		<table class="table table-dark table-hover table-bordered">
 
+					<thead class="thead-dark">
 
+						<tr>
+
+							<th scope>id</th>
+
+							<th scope>nome</th>
+
+							<th scope>custo</th>
+
+							<th scope>datainicio</th>
+
+							<th scope>descricao</th>
+
+							<th scope>tipo</th>
+
+							<th scope>prioridade</th>
+
+							<th scope>acao</th>							
+
+						</tr>
+
+					</thead>
+					 
+          <?php
+
+            $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+            $sql = "SELECT * FROM  requisito";
+            
+            $result = $conn->query($sql);
+
+            
+
+            if($result->num_rows > 0){
+
+              while($row = $result-> fetch_assoc()){
+
+                echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["custo"]. "</td><td>". $row["datainicio"]. "</td><td>". $row["descricao"]. "</td><td>". $row["tipo"]. "</td><td>". $row["prioridade"]. "</td><td>". $row["acao"]. "<button class ='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>editar</button><button class ='btn btn-danger badge badge-pill badge-primary' data-toggle='modal' data-target='#delete'>apagar</button>";
+              }
+              
+            }
+            
+          
+          ?>					
+				
+			  </table>
 
       </div>
 
+
+    <div class="col-lg-12 marcador5  espaco">
+
+      <table class="table table-dark table-hover table-bordered">
+
+        <thead class="thead-dark">
+
+          <tr>
+
+            <th scope>id</th>
+
+            <th scope>nome</th>
+      
+            <th scope>email</th>
+
+            <th scope>funcao</th>
+
+            <th scope>#</th>
+    
+
+          </tr>
+
+        </thead>
+
+        <?php
+
+          $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+          $sql = "SELECT * FROM   utilizador";
+
+          $result = $conn->query($sql);
+
+          if($result->num_rows > 0){
+
+            while($row = $result-> fetch_assoc()){
+
+              echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["email"]. "</td><td>". $row["funcao"]. "</td><td>";
+            }
+  
+          }				
+
+
+        ?>			
+
+      </table>
+  
+    </div>
+
+    </div>
+
+
+    
+    <div class="col-lg-12 marcador5 espaco">
+
+      <script type="text/javascript">
+        window.onload = function () {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+          theme: "light1", // "light2", "dark1", "dark2"
+          animationEnabled: false, // change to true		
+          title:{
+          text: "Basic Column Chart"},
+                  data: [
+          {
+            // Change type to "bar", "area", "spline", "pie",etc.
+            type: "column",
+            dataPoints: [
+          { label: "apple",  y: 10  },
+          { label: "orange", y: 15  },
+          { label: "banana", y: 25  },
+          { label: "mango",  y: 30  },
+          { label: "grape",  y: 28  }
+                        ]
+                  }
+                  ]
+                });
+                chart.render();
+
+                }
+      </script>
+
+      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>		
+
+    </div>
+      
       
       
       

@@ -80,80 +80,10 @@
   	</nav>
 
 
-	
-
-		
-		<!-- ADD Modal -->
-		<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-			<div class="modal-dialog" role="document">
-
-				<div class="modal-content">
-
-					<div class="modal-header">
-						
-						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					
-						<span aria-hidden="true">&times;</span>
-					
-						</button>
-				
-					</div>
-				
-				<div class="modal-body">
-
-					<form>
-						<div class="form-group">							
-							
-							<input type="text" class="form-control" id="" placeholder="Nome">							
-
-						</div>
-
-						<div class="form-group">							
-							
-							<input type="text" class="form-control" id="" placeholder="Descrição">							
-
-						</div>
-
-						<div class="form-group">							
-							
-							<input type="text" class="form-control" id="" placeholder="Tipo">							
-
-						</div>
-
-						<div class="form-group">							
-							
-							<input type="number" class="form-control" id="" placeholder="Prioridade">							
-
-						</div>
-											
-					</form>
-
-
-					
-				
-				</div>
-				
-				<div class="modal-footer">
-					
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					
-					<button type="button" class="btn btn-primary">Save changes</button>
-				
-				</div>
-				
-				</div>
-			
-			</div>
-		
-		</div>
-
 		<!-- edit Modal -->
-		<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade bd-example-modal-xl" id="edit" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
 
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog modal-xl" role="document">
 
 				<div class="modal-content">
 
@@ -171,35 +101,51 @@
 				
 				<div class="modal-body">
 
-					<form>
-						<div class="form-group">							
-							
-							<input type="text" class="form-control" id="" placeholder="Nome">							
+					<?php
+						$conn = mysqli_connect($host, $usuario, $senha, $database);
 
-						</div>
-
-						<div class="form-group">							
-							
-							<input type="text" class="form-control" id="" placeholder="Descriçãoo">							
-
-						</div>
-
-						<div class="form-group">							
-							
-							<input type="text" class="form-control" id="" placeholder="Tipo">							
-
-						</div>
-
-						<div class="form-group">							
-							
-							<input type="number" class="form-control" id="" placeholder="Prioridade">							
-
-						</div>
-											
-					</form>
-
-
+						$sql = "SELECT * FROM  requisito";
+						
+						$result = $conn->query($sql);				
+						$row = $result-> fetch_assoc();
+	
+						
+					?>
 					
+					<table>
+
+						<tr>
+						
+							<th>id</th>
+							<th>nome</th>
+							<th>custo</th>
+							<th>datainicio</th>
+							<th>descricao</th>
+							<th>tipo</th>
+							<th>prioridade</th>
+						
+						</tr>
+
+						<?php
+
+						while ($row= $result-> fetch_assoc()){
+
+							echo "<tr><form action='update.php' method=post>";
+							
+							echo "<tr><input type=text name=id value='".$row['id']."'></td>";
+							echo "<tr><input type=text name=nome value='".$row['nome']."'></td>";
+							echo "<tr><input type=text name=custo value='".$row['custo']."'></td>";
+							echo "<tr><input type=text name=datainicio value='".$row['datainicio']."'></td>";
+							echo "<tr><input type=text name=descricao value='".$row['descricao']."'></td>";
+							echo "<tr><input type=text name=tipo value='".$row['tipo']."'></td>";
+							echo "<tr><input type=text name=prioridade value='".$row['prioridade']."'></td>";
+							echo "<td><input type=submit>";
+							echo"</form></tr>";
+						}
+
+						?>
+
+					</table>
 				
 				</div>
 				
@@ -245,19 +191,11 @@
 
 					$sql = "SELECT * FROM  requisito";
 					
-					$result = $conn->query($sql);
+					$result = $conn->query($sql);				
+					$row = $result-> fetch_assoc();
 
 					
-
-					if($result->num_rows > 0){
-
-						while($row = $result-> fetch_assoc()){
-
-							echo "<a  href='apagar_utilizador.php?id=" .$row['id']."'>Apagar</a><br><hr>";
-						}
-						
-					}
-				
+					echo "<a href=apagar_utilizador.php?id=".$row['id'].">Delete</a>";
 				
 				
 				?>
@@ -347,7 +285,7 @@
 
 						while($row = $result-> fetch_assoc()){
 
-							echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["custo"]. "</td><td>". $row["datainicio"]. "</td><td>". $row["descricao"]. "</td><td>". $row["tipo"]. "</td><td>". $row["prioridade"]. "</td><td>". $row["acao"]. "<button class ='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>editar</button><button class ='btn btn-danger badge badge-pill badge-primary' data-toggle='modal' data-target='#delete'>apagar</button>";
+							echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["custo"]. "</td><td>". $row["datainicio"]. "</td><td>". $row["descricao"]. "</td><td>". $row["tipo"]. "</td><td>". $row["prioridade"]. "</td><td>". $row["acao"]. "<a class ='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>editar</a><a class ='btn btn-danger badge badge-pill badge-primary' data-toggle='modal' data-target='#delete'>apagar</a>";
 						}
 						
 					}
@@ -413,16 +351,7 @@
 				  
 			</div>
 
-			<div class="col-md-12 marcador2">				
-
-			
-			</div>
-
-
 			<div class="col-md-12 marcador2">
-
-
-				
 
 				<script type="text/javascript">
 					window.onload = function () {
@@ -452,11 +381,13 @@
 					}
 				</script>
 
-			<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-			<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>		  			
+					<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+				<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>		  			
 	  	
  	 		</div>
 
+   
     
   </body>
 </html>

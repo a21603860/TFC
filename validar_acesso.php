@@ -22,7 +22,7 @@ if(isset($_POST['login'])){
     if(mysqli_fetch_assoc($result)){
 
         $_SESSION['User']=$_POST['utilizador'];        
-        header("location:perfil_pag.php");
+        header("location:projeto.php");
 
         }else{
 

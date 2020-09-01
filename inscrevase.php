@@ -109,7 +109,7 @@
 
 					<div class="form-group">						
 						
-						<input type="file" class="form-control" id="img" name="img" required="requiored">						
+						<input type="file" class="custom-file" id="img" name="img" required="requiored">						
 					
 					</div>
 					<br>

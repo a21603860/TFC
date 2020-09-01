@@ -12,6 +12,44 @@
 	
 }
 
+.navcor{
+
+	background: #5ba1e2;
+}
+
+#Sobre{
+	background: #5ba1e2;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.texto-capa {
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.btn-custom {
+	background-color: #03989e;
+	color: white;
+	border-radius: 500px;
+	-webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    padding: 10px 35px;
+    margin: 0px 15px;
+    text-transform: uppercase;
+	transition: background 0.4s, color 0.4s;
+	margin-top: 20px;
+}
+.btn-custom:hover {
+	background:white;
+	color:#03989e;
+}
+
+.font-texto{
+	font-weight: bold;
+}
+
 .marcador5{
 	
 	border: 4px solid #e0dd1b;
@@ -52,6 +90,12 @@
 	background-color: white;
 	
 }
+
+.margemleft{
+	margin-left: 70px;
+	height: 500px;
+}
+
 
 
 

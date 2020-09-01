@@ -5,7 +5,7 @@
 
 	$sql = "SELECT * FROM  requisito";
 					
-    $result = $conn->query($sql);
+  $result = $conn->query($sql);
    
 	
 ?>
@@ -52,7 +52,7 @@
 
       <div class="navbar-header ">
 
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="projeto.php">
 					
 					<img src="imagens/logo.png"> 
 
@@ -62,21 +62,16 @@
 
       <ul class=" navbar-nav ml-auto">
 
-        <li class="nav-item ">
-
-          <a class="nav-link" href="#">HOME </a>
-          
-        </li>
-
+        
         <li class="nav-item">
 
-          <a class="nav-link" href="#">PERFIL</a>
+          <a class="nav-link" href="projeto.php">PERFIL</a>
 
         </li>
 
         <li class="nav-item">
 
-          <a class="nav-link" href="#">AVALAIÇÃO</a>
+          <a class="nav-link" href="avaliacao.php">AVALAIÇÃO</a>
 
         </li>
 
@@ -158,7 +153,62 @@
 
             <div class="col-md-8 border border-dark">
 
-                <div id="modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">>
+                
+
+                
+                
+                <table class="table border border-dark ">
+
+                <thead class="thead-dark">
+
+                  <tr>
+
+                    <th scope>id</th>
+
+                    <th scope>nome</th>
+                    
+                    <th scope>email</th>
+
+                    <th scope>funcao</th>
+                    
+
+                  </tr>
+
+                </thead>
+                
+                <?php
+
+                  $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+                  $sql = "SELECT * FROM   utilizador";
+
+                  $result = $conn->query($sql);
+
+                  if($result->num_rows > 0){
+
+                    while($row = $result-> fetch_assoc()){
+
+                      echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["email"]. "</td><td>". $row["funcao"];
+                    }
+                    
+                  }				
+
+
+                ?>			
+
+                </table><br>
+
+                       
+            </div>
+
+        </div>
+        
+        <br>
+        <div class="row">
+          
+          <div class="col-lg-11 border border-dark" name="projeto" id="projeto">
+
+          <div id="modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">>
                     <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -310,9 +360,11 @@
                 <div class="col-md-6 grid-margin stretch-card ">
                     <div class="card">
                         <div class="card-body pb-0">
+
                             <div class="d-flex justify-content-between">
                                 <h4 class="card-title mb-0">Total de Requisitos</h4>
                             </div>
+
                             <h3 class="font-weight-medium mb-4">
                             
                             <?php
@@ -329,59 +381,145 @@
                             
                             </h3>
                         </div>
+
                         <canvas class="mt-n4" height="90" id="total-revenue"></canva>
                         
                      </div>
+                     <br>
                 </div>
 
-                
-                
-                <table class="table border border-dark ">
+          </div>
 
-                <thead class="thead-dark">
+        </div>
 
-                  <tr>
+        <br>
+        <div class="row">
 
-                    <th scope>id</th>
+          <div class="col-lg-11 border border-dark">
 
-                    <th scope>nome</th>
-                    
-                    <th scope>email</th>
+              <div class="col-lg-10 border border-dark margemleft">
+                          
+              <div class="col-md-3 marcador1">
+          
+          <div class="card border border-dark" style="width: 22rem;">
 
-                    <th scope>funcao</th>
-                    
+            <div class="card-body" href="#">
 
-                  </tr>
+              <h3 class="card-title ">
 
-                </thead>
-                
-                <?php
-
-                  $conn = mysqli_connect($host, $usuario, $senha, $database);
-
-                  $sql = "SELECT * FROM   utilizador";
-
-                  $result = $conn->query($sql);
-
-                  if($result->num_rows > 0){
-
-                    while($row = $result-> fetch_assoc()){
-
-                      echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["email"]. "</td><td>". $row["funcao"];
-                    }
-                    
-                  }				
-
-
-                ?>			
-
-                </table><br>
-
-                       
+              <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
+              </svg>
+            
+              </h3>
+            
+              <h2><p class="card-text monospace">Projeto</p></h2>
+            
             </div>
 
-           
-        </div>   
+          </div>
+
+        </div>        
+
+        <div class="col-md-3 marcador1">
+          
+          <div class="card border border-dark" style="width: 22rem;">
+
+            <div class="card-body" href="#">
+
+              <h3 class="card-title ">
+
+              <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-gear-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
+              </svg>
+            
+              </h3>
+            
+              <h2><p class="card-text monospace">Definições</p></h2>
+            
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-3 marcador1">
+          
+          <div class="card border border-dark" style="width: 22rem;">
+
+            <div class="card-body" href="#">
+
+              <h3 class="card-title ">
+
+              <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+              </svg>
+            
+              </h3>
+            
+              <h2><p class="card-text monospace">Equipa</p></h2>
+            
+            </div>
+
+          </div>
+
+        </div>
+                                    
+              
+              </div>
+
+          </div>
+
+        </div>
+
+        <br>
+        <div class="row">
+
+          <div class="col-lg-11 border border-dark" id="team" name="team">
+          <?php
+          $query = " SELECT * FROM utilizador";
+          $stmt = $conn->prepare($query);
+          $stmt->execute();
+          $result = $stmt->get_result();
+          ?>
+          <form action="" method="post" enctype="multipart/form-data">
+              <table class="table table-dark table-hover table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>img</th>
+                    <th>id</th>
+                    <th>nome</th>
+                    <th>funcao</th>
+                    <th>action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                  <?php  while ($row = $result->fetch_assoc()) { ?>
+                    
+                    <tr>
+                      <td><img src="<?= $row['img']; ?>" width="30"></td>
+                      <td><?= $row['id']; ?></td>
+                      <td><?= $row['nome']; ?></td>
+                      <td><?= $row['funcao']; ?></td>
+                      <td>
+                        <a href="#" class="badge badge-primary p-2"> Delete</a>
+                      </td>
+                    </tr>
+
+                  <?php } ?>
+
+                </tbody>
+              </table>
+
+
+          </form>
+
+          </div>
+
+        </div>
+
+        
       
       
 

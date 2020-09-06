@@ -3,7 +3,7 @@
 require_once('db.class.php');
 
 
-$nomeproject = $_POST['nomeproject'];
+$nome = $_POST['nome'];
 $custo = $_POST['custo'];
 $datainicio = $_POST['datainicio'];
 $datafim = $_POST['datafim'];
@@ -12,7 +12,7 @@ $datafim = $_POST['datafim'];
 $objDb = new db();
 $link = $objDb->conecta_mysql();
 
-$sql = "insert into projeto( nomeproject, custo, datainicio, datafim) values('$nomeproject','$custo','$datainicio','$datafim')";
+$sql = "insert into projeto( nome, custo, datainicio, datafim) values('$nome','$custo','$datainicio','$datafim')";
 
 
 //executar a query

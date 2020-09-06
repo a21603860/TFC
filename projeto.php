@@ -1,5 +1,7 @@
 <?php
-    include_once'connection.php';
+
+  include_once'regista_equipa.php';
+  include_once'connection.php';
     
 	$conn = mysqli_connect($host, $usuario, $senha, $database);
 
@@ -13,7 +15,7 @@
 
 <!doctype html>
 
-<html lang="pt-br">
+<html lang="pt-br" >
 
   <head>
     
@@ -29,6 +31,8 @@
 
     <!-- Boostrapp -->
     <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/5.4.1/css/all.css">
+
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -38,49 +42,40 @@
 
   
   <title>Projeto</title>
+  
+  <script type="text/javascript" src="https://gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart(){
+        var data = google.visualization.arrayToDataTable([
+          ['Tipo', 'Prioridade'],
+          <?php
+          while ($row = mysqli_fetch_array($result)){
+            echo "['".$row["tipo"]."', ".$row["prioridade"]."],";
+          }
+          ?>
+        ]);
+        var options = {
+          title: 'Número de Requisitos e Prioridade'
+          };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'))
+        chart.draw(data, options)
+        } 
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+  </script> 
 
   </head> 
 
-  <body >
+  <body > 
     
-  <nav class="navbar navbar-expand-lg cor rcorners ">    
-    
-    <div class="container navbar-header" id="navbarNav">
-
-      <div class="navbar-header ">
-
-				<a class="navbar-brand" href="projeto.php">
-					
-					<img src="imagens/logo.png"> 
-
-				</a>
-
-			</div>
-
-      <ul class=" navbar-nav ml-auto">
-
-        
-        <li class="nav-item">
-
-          <a class="nav-link" href="projeto.php">PERFIL</a>
-
-        </li>
-
-        <li class="nav-item">
-
-          <a class="nav-link" href="avaliacao.php">AVALAIÇÃO</a>
-
-        </li>
-
-      
-      </ul>
-
-    </div>
-
-  </nav>
+    <nav class="navbar fixed-top  navcor rcorners">          
+        <a class="navbar-brand" href="#"><img src="imagens/logo.png"></a>
+        <ul class="av justify-content-end">
+          <a type="button" class="btn" style="color: white;" href="projeto.php">HOME </a>
+          <a type="button" class="btn" style="color: white;" href="avaliacao.php">AVALIAÇÃO</a>
+        </ul>
+      </nav>
     
     <div class="container "> 
 
@@ -101,23 +96,17 @@
 
       </div> 
 
-      <div class="card">
-        
-        <div class="card-body">
-            This is some text within a card body.
-        </div>
+      <a type="button" class=" btn btn-info gotopbtn" href="#dashboard" id="fixedbutton">Go  top</a>        
 
-      </div>
       <br></br>
-
+        
         <div class="row">
-
             
             <div class="col-md-3 border border-dark">
             
-                <br>
+                <br>    
 
-                <div class="list-group">
+                <div class="list-group ">
                 <a href="#dashboard" class="cor3 list-group-item">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grid-1x2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5z"/>
@@ -125,12 +114,17 @@
                 </a>
                 </div>
 
-                <div class="list-group">          
-                <a href="#projeto" class="cor3 list-group-item ">        
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
-                </svg> Projeto  
-                </a>
+                <div class="dropdown list-group">          
+                <a class="cor3 btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
+                  </svg> Projeto  
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#projeto">Criar Projeto</a>
+                    <a class="dropdown-item" href="#">Criar Requisitos</a>
+                    <a class="dropdown-item" href="#tabelaprojetos">Verificar Projetos</a>
+                  </div>
                 </div>
 
                 <div class="list-group">
@@ -142,200 +136,127 @@
                 </div>
 
                 <div class="list-group">
-                <a id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" class="cor3 list-group-item ">
+                <a  href="#team" class="cor3 list-group-item ">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
                 </svg> Equipas
                 </a>
                 </div>
 
+                <div class="list-group">
+                <a  href="#team" class="cor3 list-group-item ">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-hourglass-split" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13s-.866-1.299-3-1.48V8.35z"/>
+                </svg> Avaliação
+                </a>
+                </div>
+
             </div>
 
-            <div class="col-md-8 border border-dark">
+            <section class="col-md-8 border border-dark"  id="dashboard">
 
-                
-
-                
-                
-                <table class="table border border-dark ">
-
-                <thead class="thead-dark">
-
-                  <tr>
-
-                    <th scope>id</th>
-
-                    <th scope>nome</th>
-                    
-                    <th scope>email</th>
-
-                    <th scope>funcao</th>
-                    
-
-                  </tr>
-
-                </thead>
-                
-                <?php
-
-                  $conn = mysqli_connect($host, $usuario, $senha, $database);
-
-                  $sql = "SELECT * FROM   utilizador";
-
-                  $result = $conn->query($sql);
-
-                  if($result->num_rows > 0){
-
-                    while($row = $result-> fetch_assoc()){
-
-                      echo"<tr><td>". $row["id"]. "</td><td>". $row["nome"]. "</td><td>". $row["email"]. "</td><td>". $row["funcao"];
-                    }
-                    
-                  }				
-
-
-                ?>			
-
-                </table><br>
-
-                       
-            </div>
+            <div id="piechart" style="width: 500px; height: 500px;">
+               
+            </div><br>
+              
+              <br>                       
+            </section>
 
         </div>
         
         <br>
         <div class="row">
           
-          <div class="col-lg-11 border border-dark" name="projeto" id="projeto">
+        <section class="col-lg-11 border border-dark" name="projeto" id="projeto">         
 
-          <div id="modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">>
-                    <div class="modal-dialog modal-xl" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Novo Projeto</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
+          <br>                
+          <div class="card col-lg-12 espacobaixo">
+            <div class="card-body">
+              <h4 class="card-title">Criar Projeto</h4><br>
 
-                                <form method="POST" action="regista_projeto.php" id="formProjeto">            
-            
-                                    
-                                            
-                                    <div class="form-group row espaco">
+                <form method="POST" action="regista_projeto.php" id="formProjeto">
 
-                                        <label for="Input1" class="col-sm-2 col-form-label">nome</label>
+                  <div class="form-group col-md-5">
+                    <label for="exampleInputName1">Nome Projeto</label>
+                    <input type="text" id="nome" name="nome" class="form-control">
+                  </div>
+                  <div class="form-group col-md-5">
+                    <label for="exampleInputName1">Tipo de Projeto</label>
+                    <select class="form-control" id="" ></select>
+                      <option></option>
+                      <option></option>
+                      <option></option>
+                  </div>
+                  <div class="form-group col-md-5">
+                    <label for="exampleInputName1">Data Inicio</label>
+                    <input type="date" id="datainicio" name="datainicio" class="form-control">
+                  </div>
+                  <div class="form-group col-md-5">
+                    <label for="exampleInputName1">Data Fim</label>
+                    <input type="date" id="datafim" class="form-control" name="datafim">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="exampleInputName1">Custo</label>
+                    <input type="number" id="custo" name="custo" class="form-control" >                                                
+                  </div><br>
+                  <button type="submit" class="btn btn-primary ">Criar Projeto</button>
+                  <br></br>
 
-                                            <div class="col-sm-4">
+                </form>
+            </div>
+          </div> 
 
-                                                <input type="text" class="form-control" id="nomeproject" name="nomeproject" placeholder="Insira o nome do Requisito">
-                                
-                                            </div>
-                                    </div>
+          <br>            
+          <table class="table border border-dark" id="tabelaprojetos">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Data-Início</th>
+                <th scope="col">Data-Fim</th>
+                <th scope="col">Custo</th>                        
+                <th scope="col">Ação</th>  
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <?php
+                
+                  $conn = mysqli_connect($host, $usuario, $senha, $database);
 
-                                    <div class="form-group row espaco">
-
-                                        <label for="Input1" class="col-sm-2 col-form-label">custo</label>
-
-                                            <div class="col-sm-3">
-
-                                                <input type="number" class="form-control" id="custo" name="custo" placeholder="Insira o custo do Requisito">
-                                
-                                            </div>
-                                    </div>
-
-                                    <div class="form-group row espaco">
-
-                                        <label for="Input1" class="col-sm-2 col-form-label">datainicio</label>
-
-                                            <div class="col-sm-3">
-
-                                                <input type="date" class="form-control" id="datainicio" name="datainicio" >
-                                
-                                            </div>
-                                    </div>
-
-                                    <div class="form-group row espaco">
-
-                                        <label for="Input1" class="col-sm-2 col-form-label">datafinal</label>
-
-                                            <div class="col-sm-3">
-
-                                                <input type="date" class="form-control" id="datafim" name="datafim" >
-                                
-                                            </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary ">Carregar</button>
-                                    <br></br>
-
-                                </form>                                
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-            
-                <table class="table border border-dark">
-                    <thead class="thead-dark">
-                        <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">NOME</th>
-                        <th scope="col">CUSTO</th>
-                        <th scope="col">DATA-INICIO</th>
-                        <th scope="col">DATA-FIM</th>
+                  $sql = "SELECT * FROM  projeto";
                         
+                  $record = mysqli_query($conn, $sql);
+                        
+                  while ($row =mysqli_fetch_array($record)){
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-
-                           <?php
-
-                            $conn = mysqli_connect($host, $usuario, $senha, $database);
-
-                            $sql = "SELECT * FROM  projeto";
-                            
-                            $result = $conn->query($sql);                            
-
-                            if($result->num_rows > 0){
-
-                              while($row = $result-> fetch_assoc()){
-
-                                echo"<tr><td>". $row["idproject"]. "</td><td>". $row["nomeproject"]. "</td><td>". $row["custo"]. "</td><td>".  $row["datainicio"]. "</td><td>". $row["datafim"];
-                              }
-                              
-                            }
-                            
+                    echo"<tr>";
+                    echo"<td>".$row['id']."</td>";
+                    echo"<td>".$row['nome']."</td>";
+                    echo"<td>".$row['datainicio']."</td>";
+                    echo"<td>".$row['datafim']."</td>";
+                    echo"<td>".$row['custo']."</td>";
+                    echo "<td><a href=apagar_projeto.php?id=".$row['id'].">Delete</a><a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>Edit</td>";
                           
-                          ?> 
-                            
+                    }                
+                      
+                ?> 
+                                  
 
-                        </tr>
-                        
-                    </tbody>                    
-                    
-                </table>
+              </tr>                        
+            </tbody>                    
+          </table>
+          <br>
 
-                <br>
+          <div class="text-right">
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal" >Criar Projeto</button>
+          </div>
+          <br>
 
-                <div class="text-right">
-                  <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal" >Criar Projeto</button>
-                </div>
-
-                <br>
-
-                <div class="col-md-6 grid-margin stretch-card ">
-                    <div class="card">
+                <div class="col-md-4 grid-margin stretch-card ">
+                    <div class="card bg-dark text-white" >
                         <div class="card-body pb-0">
+
                             <div class="d-flex justify-content-between">
                                 <h4 class="card-title mb-0">Total de Projectos</h4>
                             </div>
@@ -354,175 +275,133 @@
                             </h3>
                         </div>
                         <canvas class="mt-n3" height="90" id="total-transaction"></canva>
-                    </div>
-                </div>
+                    </div><br>
 
-                <div class="col-md-6 grid-margin stretch-card ">
-                    <div class="card">
+                </div>
+                
+
+          </div>
+
+        </section><br>
+
+        <div class="row">
+
+          <section class="col-lg-11 border border-dark" id="team">
+            
+            <br>
+            <div class="text-right">
+              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modalteam" >Criar Equipa</button>
+            </div>
+            <br>
+
+            <div id="modalteam" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">>
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Novo Equipa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    <form method="POST" action="regista_equipa.php" id="formEquipa">                                            
+                      
+                      <div class="form-group row espaco">
+                        <label for="Input1" class="col-sm-2 col-form-label">nome</label>
+                        <div class="col-sm-5">
+                          <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da equipa">                                
+                        </div>
+                      </div>
+
+                      
+                      <div class="form-group">
+						            <input type="file" class="custom-file" id="img" name="img" required="requiored">	
+					            </div>
+                    
+
+                      <button name="uploadfilesub" type="submit" class="btn btn-primary">Carregar</button>
+                       <br></br>
+
+                    </form>                                
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+
+            <form action="" method="post" enctype="multipart/form-data">
+                <table class="table border border-dark">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>Id</th>
+                      <th>Nome</th>
+                      <th>Img</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  
+                  <?php
+                
+                $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+                  $sql = "SELECT * FROM  equipa";
+                  
+                  $record = mysqli_query($conn, $sql);
+                  
+                  while ($row =mysqli_fetch_array($record)){
+
+                    echo"<tr>";
+                    echo"<td>".$row['id']."</td>";
+                    echo"<td>".$row['nome']."</td>";
+                    echo"<td>".$row['img']."</td>";
+                    echo "<td><a href=apagar_equipa.php?id=".$row['id'].">Delete</a><a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>Edit</td>";
+                    
+                  }                
+                
+                ?> 
+
+                  </tbody>
+                </table>
+            </form>
+
+            <div class="col-md-4 grid-margin stretch-card ">
+                    <div class="card bg-dark text-white" >
                         <div class="card-body pb-0">
 
                             <div class="d-flex justify-content-between">
-                                <h4 class="card-title mb-0">Total de Requisitos</h4>
+                                <h4 class="card-title mb-0">Total de Equipas</h4>
                             </div>
-
-                            <h3 class="font-weight-medium mb-4">
+                            <h3 class="font-weight-medium">
                             
-                            <?php
-                            
+                              <?php
                               
-                              
-                              $sql= "SELECT * FROM requisito";
-                              $result = $conn->query($sql);
-                              $total = $result->num_rows; 
-
-                              echo $total.'</b>';
+                                $sql= "SELECT * FROM equipa";
+                                $result = $conn->query($sql);
+                                $total = $result->num_rows;
+                                echo $total.'</b>';
+                          
+                              ?> 
                             
-                            ?>                           
                             
                             </h3>
                         </div>
+                        <canvas class="mt-n3" height="90" id="total-transaction"></canva>
+                    </div><br>
 
-                        <canvas class="mt-n4" height="90" id="total-revenue"></canva>
-                        
-                     </div>
-                     <br>
                 </div>
 
-          </div>
-
-        </div>
-
-        <br>
-        <div class="row">
-
-          <div class="col-lg-11 border border-dark">
-
-              <div class="col-lg-10 border border-dark margemleft">
-                          
-              <div class="col-md-3 marcador1">
-          
-          <div class="card border border-dark" style="width: 22rem;">
-
-            <div class="card-body" href="#">
-
-              <h3 class="card-title ">
-
-              <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
-              </svg>
+          </section>
             
-              </h3>
-            
-              <h2><p class="card-text monospace">Projeto</p></h2>
-            
-            </div>
-
-          </div>
-
-        </div>        
-
-        <div class="col-md-3 marcador1">
-          
-          <div class="card border border-dark" style="width: 22rem;">
-
-            <div class="card-body" href="#">
-
-              <h3 class="card-title ">
-
-              <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-gear-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
-              </svg>
-            
-              </h3>
-            
-              <h2><p class="card-text monospace">Definições</p></h2>
-            
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="col-md-3 marcador1">
-          
-          <div class="card border border-dark" style="width: 22rem;">
-
-            <div class="card-body" href="#">
-
-              <h3 class="card-title ">
-
-              <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-              </svg>
-            
-              </h3>
-            
-              <h2><p class="card-text monospace">Equipa</p></h2>
-            
-            </div>
-
-          </div>
-
-        </div>
-                                    
-              
-              </div>
-
-          </div>
-
-        </div>
-
-        <br>
-        <div class="row">
-
-          <div class="col-lg-11 border border-dark" id="team" name="team">
-          <?php
-          $query = " SELECT * FROM utilizador";
-          $stmt = $conn->prepare($query);
-          $stmt->execute();
-          $result = $stmt->get_result();
-          ?>
-          <form action="" method="post" enctype="multipart/form-data">
-              <table class="table table-dark table-hover table-bordered">
-                <thead class="thead-dark">
-                  <tr>
-                    <th>img</th>
-                    <th>id</th>
-                    <th>nome</th>
-                    <th>funcao</th>
-                    <th>action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                
-                  <?php  while ($row = $result->fetch_assoc()) { ?>
-                    
-                    <tr>
-                      <td><img src="<?= $row['img']; ?>" width="30"></td>
-                      <td><?= $row['id']; ?></td>
-                      <td><?= $row['nome']; ?></td>
-                      <td><?= $row['funcao']; ?></td>
-                      <td>
-                        <a href="#" class="badge badge-primary p-2"> Delete</a>
-                      </td>
-                    </tr>
-
-                  <?php } ?>
-
-                </tbody>
-              </table>
-
-
-          </form>
-
-          </div>
-
-        </div>
-
+        </div><br>
         
-      
-      
-
     </div>
       
     <br></br>

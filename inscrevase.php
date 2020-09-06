@@ -13,7 +13,7 @@
 
 		<meta charset="UTF-8">
 
-		<title>Twitter clone</title>
+		<title>Inscrição</title>
 		
 		<!-- jquery - link cdn -->
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -38,40 +38,11 @@
 	<body>
 
 		<!-- Static navbar -->
-	    <nav class="navbar navbar-default navbar-static-top">
-
-	      <div class="container">
-
-	        <div class="navbar-header">
-
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-
-				<span class="sr-only">Toggle navigation</span>
-				
-				<span class="icon-bar"></span>
-				
-				<span class="icon-bar"></span>
-				
-				<span class="icon-bar"></span>
-				
-			  </button>
-			  
-			  <img src="imagens/logo.png" />
-			  
-	        </div>
-	        
-	        <div id="navbar" class="navbar-collapse collapse">
-
-	          <ul class="nav navbar-nav navbar-right">
-
-				<li><a href="index.php">Voltar para Home</a></li>
-				
-			  </ul>
-			  
-			</div><!--/.nav-collapse -->
-			
-		  </div>
-		  
+	    <nav class="navbar fixed-top  navcor rcorners"> 
+	        <a class="navbar-brand"><img src="imagens/logo.png" /></a>         
+			<ul class="nav justify-content-end">
+	        	<a type="button" class="btn" style="color: white;" href="index.php">Voltar para Home</a>
+			</ul>	
 	    </nav>
 
 
@@ -116,27 +87,9 @@
 
 					<div class="form-group row">
 
-              			<label for="Select1" class="col-sm-2 col-form-label">Função</label>
-
-                		<div class="col-sm-5">
-
-                  			<select class="form-control" id="funcao" name="funcao">
-
-                    			<option>Analista</option>
-
-                    			<option>Administrador</option>
-
-                    			<option>Project Manager</option>
-
-                    			<option>Gestor de Sistema</option>                    			
-                              
-                  			</select>
-
-						</div>
-						
-					</div>
-					
 					<button type="submit" class="btn btn-primary form-control">Inscreva-se</button>
+
+					</div>
 
 				</form>
 

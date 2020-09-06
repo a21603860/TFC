@@ -12,6 +12,7 @@
 	
 }
 
+
 .navcor{
 
 	background: #5ba1e2;
@@ -114,7 +115,7 @@
 }
 
 .espacobaixo{
-	margin-bottom: 20px;;
+	margin-bottom: 70px;;
 }
 
 .rcorners{
@@ -160,12 +161,18 @@
 
 .cor2{
 
-	background-color:#3CB371;
+	background-color:#34495e;
 }
 
 .cor3{
 
 	background-color:#90EE90;
+}
+
+#fixedbutton {
+    position: fixed;
+    bottom: 50px;
+    right: 50px; 
 }
 
 .column-gap{

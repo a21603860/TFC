@@ -22,12 +22,11 @@
     <!-- Boostrapp -->
     <link rel="stylesheet" type="text/css" href="estilo.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/5.4.1/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   
-  <title>Avaliação</title>
+  <title>Administrador</title>
 
   </head> 
 
@@ -56,7 +55,7 @@
         }
         ?>
 
-        <h1 class="monospace">Avaliação</h1>
+        <h1 class="monospace">Administrador</h1>
 
       </div>     
 
@@ -177,18 +176,94 @@
           </div>
         </div>
 
+        <div class="modal" tabindex="-1" role="dialog" id="edit">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+              <form method="GET" action="testea.php">
+
+                             
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1" >Example select</label>
+                  <select class="form-control" id="papel">
+                    <option>Analista</option>
+                    <option>Project Manager</option>
+                    <option>Gestor do Siteste</option>
+                    <option>Administrador</option>
+                  </select>
+                </div><br>
+                <button name="uploadfilesub" type="submit" class="btn btn-primary">Carregar</button>
+                <br></br>
+
+              </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
       
         <div class="col-lg-4">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" style="text-right">
-            Adicionar requisito
+            ######
           </button>
         </div>
 
         
+        
+        <div class="col-lg-12">
+        
+          <table class="table border border-dark ">
+
+            <thead class="thead-dark">
+              <tr>
+                <th scope>Id</th>
+                <th scope>Nome</th>                    
+                <th scope>Email</th>
+                <th scope>Papel</th>
+                <th scope>Ação</th>                
+              </tr>
+            </thead>
+
+            <?php
+                
+                $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+                  $sql = "SELECT * FROM  utilizador";
+                  
+                  $record = mysqli_query($conn, $sql);
+                  
+                  while ($row =mysqli_fetch_array($record)){
+
+                    echo"<tr>";
+                    echo"<td>".$row['id']."</td>";
+                    echo"<td>".$row['nome']."</td>";
+                    echo"<td>".$row['email']."</td>";
+                    echo"<td>".$row['papel']."</td>";
+                    echo "<td><a href=apagar_utilizadorverdadeiro.php?id=".$row['id'].">Delete</a><a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>Edit</td>";
+                    
+                  }                
+                
+                ?> 			
+
+          </table><br>
+        </div>
+        
         <div class="col-lg-12">
           <table class="table border border-dark">
-            <thead class="cor2 text-white">
+            <thead class="thead-dark">
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
@@ -206,7 +281,7 @@
                 
                 $conn = mysqli_connect($host, $usuario, $senha, $database);
 
-                  $sql = "SELECT * FROM  requisito";
+                  $sql = "SELECT * FROM  requisito WHERE prioridade>0";
                   
                   $record = mysqli_query($conn, $sql);
                   
@@ -230,10 +305,10 @@
           </table><br>
 
           <div class="col-md-4 grid-margin stretch-card ">
-            <div class="card cor2 text-white">
+            <div class="card bg-dark text-white">
               <div class="card-body pb-0">
 
-                <div class="d-flex justify-content-between ">
+                <div class="d-flex justify-content-between">
                   <h4 class="card-title mb-0">Total de Requisitos</h4>
                 </div>
 
@@ -254,6 +329,7 @@
               <canvas class="mt-n4" height="90" id="total-revenue"></canva>                        
             </div><br>                     
           </div>
+
 
         </div>
 

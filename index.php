@@ -38,7 +38,7 @@
 
 		<section id="barraNav">
 			<nav class="navbar fixed-top  navcor rcorners">
-			<a class="navbar-brand" href="index.html"><img src="imagens/logo.png "></a>
+			<a class="navbar-brand" href="index.php"><img src="imagens/logo.png "></a>
 			<ul class="nav justify-content-end">
 				<a type="button" class="btn" style= "color: white;" href="#Sobre">Sobre</a>
 				<a type="button" class="btn" style= "color: white;" href="inscrevase.php">Inscrever-se </a>				
@@ -57,10 +57,10 @@
 					</div>
         			<div class="modal-body">
 
-					<form method="post" action="validar_acesso.php" id="formLogin">
+					<form method="post" action="validar_acesso.php" id="formLogin" >
 
 						<div class="form-group ">
-							<input type="text" class="form-control" id="campo_utilizador" name="utilizador" placeholder="Utilizador" />					
+							<input type="text" class="form-control " id="campo_utilizador" name="utilizador" placeholder="Utilizador" />					
 						</div>
 					
 						<div class="form-group">

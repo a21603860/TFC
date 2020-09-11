@@ -15,14 +15,19 @@ if(isset($_POST['login'])){
         
     }else{
 
-    $query="SELECT * FROM utilizador WHERE nome='".$_POST['utilizador']."' and senha ='".$_POST['senha']."'";
+    $query="SELECT id FROM utilizador WHERE nome='".$_POST['utilizador']."' and senha ='".$_POST['senha']."'";
         
     $result=mysqli_query($con,$query);
 
     if(mysqli_fetch_assoc($result)){
+        while ($row =mysqli_fetch_array($result)){
+           $_SESSION['userid']=$row['id'];
+           
+        }
 
-        $_SESSION['User']=$_POST['utilizador'];        
-        header("location:projeto.php");
+        $_SESSION['User']=$_POST['utilizador'];
+                
+        header("location:projetoco.php");
 
         }else{
 

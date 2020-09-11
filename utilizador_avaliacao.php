@@ -64,126 +64,117 @@
       
         <br><br>
         <br><br>
+
       
-        <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">                
-              <form method="POST" action="regista_requisito.php?id=".$_GET['id']." id="formRequisito">  
-                
-                <div class="form-group row espaco">
-                
-                  <label for="Input1" class="col-sm-2 col-form-label">nome</label>
-
-                    <div class="col-sm-10">
-
-                      <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome do Requisito">
-              
-                    </div>
-                </div>
-
-                <div class="form-group row espaco">
-
-                  <label for="Input1" class="col-sm-2 col-form-label">custo</label>
-
-                    <div class="col-sm-10">
-
-                      <input type="number" class="form-control" id="custo" name="custo" placeholder="Insira o custo do Requisito">
-              
-                    </div>
-                </div>
-
-                <div class="form-group row espaco">
-
-                  <label for="Input1" class="col-sm-2 col-form-label">datainicio</label>
-
-                    <div class="col-sm-10">
-
-                      <input type="date" class="form-control" id="datainicio" name="datainicio" >
-              
-                    </div>
-                </div>
-
-                <div class="form-group row">
-
-                  <label for="ControlTextarea1" class="col-sm-2 col-form-label">descricao</label>
-
-                    <div class="col-sm-7">
-
-                      <textarea class="form-control" id="descricao" rows="3" name="descricao"></textarea>
-
-                    </div>
-
-                </div>
-
-                <div class="form-group row">
-
-                  <label for="Select1" class="col-sm-2 col-form-label">tipo</label>
-
-                    <div class="col-sm-5">
-
-                      <select class="form-control" id="tipo" name="tipo">
-
-                        <option>Negócio</option>
-
-                        <option>Funcional</option>
-
-                        <option>Não Funcional</option>
-                                  
-                      </select>
-
-                    </div>
-
-                </div>
-
-                <div class="form-group row">
-
-                  <label for="Select1" class="col-sm-2 col-form-label">prioridade</label>
-
-                    <div class="col-sm-5">
-
-                      <select class="form-control" id="prioridade" name="prioridade">
-
-                        <option>1</option>
-
-                        <option>2</option>
-
-                        <option>3</option>
-
-                        <option>4</option>
-
-                        <option>5</option>
-                                  
-                      </select>
-
-                    </div>
-
-                </div>
-
-                <button type="submit" class="btn btn-primary ">Carregar</button>
-                <br></br>
-              </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                
-              </div>
-            </div>
-          </div>
+        <div class="col-lg-4">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalinserir" style="text-right">
+            Adicionar requisito
+          </button>
         </div>
 
+        <div class="modal" tabindex="-1" role="dialog" id="modalinserir">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-      
-        
+            <form method="POST" action="insercacao_avaliacao_by_utilizador.php?id=$_GET['id']">
+                
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Example select</label>
+                    <select class="form-control" id="voto" name="voto">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    </select>
+                </div>       
+                <button type="submit" class="btn btn-primary">Carregar</button><br><br>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+        </div>
+    </div>
+  </div>
+</div>
 
         
         <div class="col-lg-12">
-          
+          <table class="table border border-dark">
+            <thead class="cor2 text-white">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Custo</th>
+                <th scope="col">Descricao</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Valor do voto</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            
+            <tbody>   
+              <?php
+                
+                $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+                  $sql = "SELECT * FROM  requisito ";
+                  
+                  $record = mysqli_query($conn, $sql);
+                  
+                  while ($row =mysqli_fetch_array($record)){
+                    $_SESSION['idrequisito']=$row['id'];
+
+                    echo"<tr>";
+                    echo"<td>".$row['id']."</td>";
+                    echo"<td>".$row['nome']."</td>";
+                    echo"<td>".$row['custo']."</td>";
+                    echo"<td>".$row['descricao']."</td>";
+                    echo"<td>".$row['tipo']."</td>";
+                    echo"<td>".$row['voto']."</td>";
+                    echo "<td><a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#modalinserir'>Edit</td>";
+                    
+                  }                
+                
+                ?> 
+
+            </tbody>
+          </table><br>
+
+          <div class="col-md-4 grid-margin stretch-card ">
+            <div class="card cor2 text-white">
+              <div class="card-body pb-0">
+
+                <div class="d-flex justify-content-between ">
+                  <h4 class="card-title mb-0">Total de Requisitos</h4>
+                </div>
+
+                <h3 class="font-weight-medium mb-4">
+                            
+                <?php
+
+                  $sql= "SELECT * FROM requisito";
+                  $result = $conn->query($sql);
+                  $total = $result->num_rows; 
+
+                  echo $total.'</b>';
+                              
+                ?>                           
+                            
+                </h3>
+              </div>
+              <canvas class="mt-n4" height="90" id="total-revenue"></canva>                        
+            </div><br>                     
+          </div>
 
         </div>
 

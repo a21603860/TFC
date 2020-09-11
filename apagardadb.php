@@ -12,7 +12,7 @@ include_once'connection.php';
 
     if(mysqli_query($conn,$sql)){
         echo "requisito apagado com sucesso";
-        header("refresh:1; url=avaliacao.php");
+        //header("refresh:1; url=avaliacao.php");
     }else{
 
         echo 'not deleted';

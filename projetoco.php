@@ -3,6 +3,7 @@
   include_once'regista_equipa.php';
   include_once'connection.php';
   session_start();
+  
     
 	$conn = mysqli_connect($host, $usuario, $senha, $database);
 
@@ -92,7 +93,7 @@
         }
         ?>
 
-        <h1 class="monospace">Projeto</h1>
+        <h1 class="monospace">Home</h1>
 
       </div> 
 
@@ -115,7 +116,7 @@
                 </div>
 
                 <div class="dropdown list-group">          
-                <a class="cor3 btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="text-dark cor3 btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
                   </svg> Projeto  
@@ -128,14 +129,6 @@
                 </div>
 
                 <div class="list-group">
-                <a href="#definiçao" class="cor3 list-group-item ">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
-                </svg> Definições
-                </a>
-                </div>
-
-                <div class="list-group">
                 <a  href="#team" class="cor3 list-group-item ">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
@@ -145,9 +138,11 @@
 
                 <div class="list-group">
                 <a  href="#avaliacao" class="cor3 list-group-item ">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-hourglass-split" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13s-.866-1.299-3-1.48V8.35z"/>
-                </svg> Avaliação
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard-data" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path fill-rule="evenodd" d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                  <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+                </svg> Requisitos
                 </a>
                 </div>
 
@@ -253,14 +248,7 @@
                   <div class="form-group col-md-5">
                     <label for="exampleInputName1">Nome Projeto</label>
                     <input type="text" id="nome" name="nome" class="form-control">
-                  </div>
-                  <div class="form-group col-md-5">
-                    <label for="exampleInputName1">Tipo de Projeto</label>
-                    <select class="form-control" id="" ></select>
-                      <option></option>
-                      <option></option>
-                      <option></option>
-                  </div>
+                  </div>                  
                   <div class="form-group col-md-5">
                     <label for="exampleInputName1">Data Inicio</label>
                     <input type="date" id="datainicio" name="datainicio" class="form-control">
@@ -268,6 +256,10 @@
                   <div class="form-group col-md-5">
                     <label for="exampleInputName1">Data Fim</label>
                     <input type="date" id="datafim" class="form-control" name="datafim">
+                  </div>
+                  <div class="form-group col-md-5">
+                    <label for="exampleInputName1">Criado Por</label>
+                    <input type="text" id="criadopor" class="form-control" name="criadopor" value="<?php echo $_SESSION['User']; ?>" disabled="true">
                   </div>
                   <div class="form-group col-md-4">
                     <label for="exampleInputName1">Custo</label>
@@ -278,36 +270,46 @@
 
                 </form>
             </div>
-          </div> 
+          </div><br> 
+
+          <div class="text-right text-primary" style="font-weight: bold">
+          Ativo = 0  Projeto encontra-se apagado(indisponivel para alterações)<p>
+          Ativo = 1  Projeto encontra-se ativo(disponivel para alterações)
+          </div>
 
           <br>            
           <table class="table border border-dark" id="tabelaprojetos">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">id</th>
+                <th scope="col">Criado Por</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Data-Início</th>
-                <th scope="col">Data-Fim</th>
-                <th scope="col">Custo</th>
-                <th scope="col">Ativo</th>                        
+                <th scope="col">Data-Fim</th>                
+                <th scope="col">Ativo</th>
+                <th scope="col">Custo</th>                        
                 <th scope="col">Ação</th>  
               </tr>
             </thead>
             <tbody>
               <tr>
 
-              <script>
-                function myFunction() {
-                  confirm("Press a button!");
-                }
-              </script>
-              
+                
+                <script>
+                  function myFunction() {
+                    confirm("Press a button!");
+                  }
+                </script>
+
                 <?php
+
+                
                 
                   $conn = mysqli_connect($host, $usuario, $senha, $database);
+                  
 
                   $sql = "SELECT * FROM  projeto ";
-
+                  
                   
                   //CRIAR UMA COLUNA QUE DIZ Q O PROJETO TA ATIVO//ALTER TABLE projecto ADD COLUMN activo BIT;UPDATE projeto SET ACTIVO = 1
                   //Para N apagar PROJETO, DESETIVA: tiras DELETE UPDATE projeto SET activo = 0 WHERE id = '$_GET[id]'
@@ -329,17 +331,20 @@
 
                         
                   $record = mysqli_query($conn, $sql);
+
+
                         
                   while ($row =mysqli_fetch_array($record)){
-
+                    
 
                     echo"<tr>";
                     echo"<td>".$row['id']."</td>";
+                    echo"<td>".$row['criadopor']."</td>";
                     echo"<td>".$row['nome']."</td>";
                     echo"<td>".$row['datainicio']."</td>";
-                    echo"<td>".$row['datafim']."</td>";
-                    echo"<td>".$row['custo']."</td>";
+                    echo"<td>".$row['datafim']."</td>";                    
                     echo"<td>".$row['activo']."</td>";
+                    echo"<td>".$row['custo']."</td>";
                     echo "<td><a onclick='myFunction()' class='btn btn-primary badge badge-pill badge-danger' href=apagar_projeto.php?id=".$row['id'].">Apagar</a>
                     <a class='btn btn-primary badge badge-pill badge-primary' href=editar_projeto.php?id=".$row['id']." >Editar</td>";
                           
@@ -448,7 +453,7 @@
                       <th>Id</th>
                       <th>Nome</th>
                       <th>Img</th>
-                      <th>Action</th>
+                      <th>Criado Por</th>
                     </tr>
                   </thead>
 
@@ -468,7 +473,7 @@
                     echo"<td>".$row['id']."</td>";
                     echo"<td>".$row['nome']."</td>";
                     echo"<td>".$row['img']."</td>";
-                    echo "<td><a href=apagar_equipa.php?id=".$row['id'].">Delete</a><a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#staticBackdrop'>Edit</td>";
+                    echo "<td>".$row['idutilizador']."</td>";
                     
                   }                
                 
@@ -509,9 +514,103 @@
         </div><br>
 
         <div class="row">
-          <section id="avaliacao" class="col-lg-11 border border-dark">
+          <section id="avaliacao" class="col-lg-11 border border-dark"><br>
 
+          <table class="table border border-dark">
+            <thead class="cor2 text-white">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Custo</th>
+                <th scope="col">Data Inicio</th>
+                <th scope="col">Descricao</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Prioridade</th>
+                <th scope="col">Estado</th>
+                <th scope="col">voto</th>
+              </tr>
+            </thead>
             
+            <tbody>   
+              <?php
+                
+                $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+                  $sql = "SELECT * FROM requisito where estado = 'Aprovado'  ORDER BY voto DESC";
+                  
+                  $record = mysqli_query($conn, $sql);
+                  
+                  while ($row =mysqli_fetch_array($record)){
+
+                    echo"<tr>";
+                    echo"<td>".$row['id']."</td>";
+                    echo"<td>".$row['nome']."</td>";
+                    echo"<td>".$row['custo']."</td>";
+                    echo"<td>".$row['datainicio']."</td>";
+                    echo"<td>".$row['descricao']."</td>";
+                    echo"<td>".$row['tipo']."</td>";
+                    echo"<td>".$row['prioridade']."</td>";
+                    echo "<td>".$row['estado']."</td>";
+                    echo "<td>".$row['voto']."</td>";
+                    
+                  }                
+                
+                ?> 
+
+            </tbody>
+          </table><br>
+
+          <div class="col-md-4 grid-margin stretch-card ">
+            <div class="card cor2 text-white">
+              <div class="card-body pb-0">
+
+                <div class="d-flex justify-content-between ">
+                  <h4 class="card-title mb-0">Total de Requisitos Aprovados</h4>
+                </div>
+
+                <h3 class="font-weight-medium mb-4">
+                            
+                <?php
+
+                  $sql= "SELECT estado FROM requisito where estado = 'Aprovado'";
+                  $result = $conn->query($sql);
+                  $total = $result->num_rows; 
+
+                  echo $total.'</b>';
+                              
+                ?>                           
+                            
+                </h3>
+              </div>
+              <canvas class="mt-n4" height="90" id="total-revenue"></canva>                        
+            </div><br>                     
+          </div>
+
+          <div class="col-md-4 grid-margin stretch-card ">
+            <div class="card cor2 text-white">
+              <div class="card-body pb-0">
+
+                <div class="d-flex justify-content-between ">
+                  <h4 class="card-title mb-0">Total de Requisitos </h4>
+                </div>
+
+                <h3 class="font-weight-medium mb-4">
+                            
+                <?php
+
+                  $sql= "SELECT * FROM requisito ";
+                  $result = $conn->query($sql);
+                  $total = $result->num_rows; 
+
+                  echo $total.'</b>';
+                              
+                ?>                           
+                            
+                </h3>
+              </div>
+              <canvas class="mt-n4" height="90" id="total-revenue"></canva>                        
+            </div><br>                     
+          </div>
 
           </section>
         </div>

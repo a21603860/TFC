@@ -1,18 +1,19 @@
 <?php
+session_start();
 
 include_once'connection.php';
 
     	
     $conn = mysqli_connect($host, $usuario, $senha, $database);
 
-    $sql = "DELETE FROM projeto WHERE id ='$_GET[id]'";
+    $sql = "UPDATE projeto SET activo = 0 WHERE id = '$_GET[id]'";
 
     $record = mysqli_query($conn, $sql);    
 
 
     if(mysqli_query($conn,$sql)){
-        echo "projeto apagado com sucesso";
-        header("refresh:1; url=projeto.php");
+        echo "projeto Inativo com sucesso";
+        header("refresh:1; url=projetoco.php");
     }else{
 
         echo 'not deleted';

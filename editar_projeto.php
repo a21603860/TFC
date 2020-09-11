@@ -1,5 +1,7 @@
 <?php
-	include_once'connection.php';
+    include_once'connection.php';
+    session_start();
+
 	
 ?>
 
@@ -27,7 +29,7 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   
-  <title>Avaliação</title>
+  <title>EditarProjeto</title>
 
   </head> 
 
@@ -36,8 +38,7 @@
       <nav class="navbar fixed-top  navcor rcorners">          
         <a class="navbar-brand" href="#"><img src="imagens/logo.png"></a>
         <ul class="av justify-content-end">
-          <a type="button" class="btn" style="color: white;" href="projeto.php">HOME </a>
-          <a type="button" class="btn" style="color: white;" href="#">AVALIAÇÃO</a>
+          <a type="button" class="btn" style="color: white;" href="projetoco.php">HOME </a>
         </ul>
       </nav>
     
@@ -46,17 +47,19 @@
       <div class="page-header">
 
         <?php
-        session_start();
+        
         if(isset($_SESSION['User']))
         {
-          echo ' Well Come ' . $_SESSION['User'].'<br/>';
-          echo '<a href="index.php?logout">Logout</a>';
+          echo ' Login como ' . $_SESSION['User'].'<br/>';
+          echo '<a href="index.php?logout">Logout</a>.<br>';
+
+
         }else{
             header("location:index.php");
         }
         ?>
 
-        <h1 class="monospace">Avaliação</h1>
+        <h1 class="monospace">Requisitos do Projeto</h1>
 
       </div>     
 
@@ -65,58 +68,132 @@
         <br><br>
         <br><br>
       
+
+        
+        <div class="col-lg-12">
+          <table class="table border border-dark">
+            <thead class="cor2 text-white">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descricao</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Voto</th>
+                <th scope="col">Ativo</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            
+            <tbody>   
+              <?php
+                
+                $conn = mysqli_connect($host, $usuario, $senha, $database);
+
+        
+                  $sql = "SELECT * FROM  requisito WHERE idprojeto ='$_GET[id]'";
+                  
+                  $record = mysqli_query($conn, $sql);
+                  
+                  
+                  while ($row =mysqli_fetch_array($record)){
+                          
+
+
+                    echo"<tr>";
+                    echo"<td>".$row['id']."</td>";
+                    echo"<td>".$row['nome']."</td>";
+                    echo"<td>".$row['descricao']."</td>";
+                    echo"<td>".$row['tipo']."</td>";
+                    echo"<td>".$row['voto']."</td>";
+                    echo"<td>".$row['ativo']."</td>";
+                    echo "<td><a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#modalinserir'>Votar</td>";
+                    
+                  }    
+                
+                ?> 
+
+            </tbody>
+          </table><br>
+
+         
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="modalinserir">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Votação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            <form method="POST" action="insercacao_avaliacao_by_utilizador.php">
+                
+                <div class="form-group row espaco">
+                  <label for="Input1" class="col-sm-2 col-form-label">Valor do Voto</label>
+                    <div class="col-sm-5">
+                      <select class="form-control" id="voto" name="voto">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div> 
+                </div>
+                <div class="form-group row espaco">
+                  <label for="Input1" class="col-sm-2 col-form-label">Id_projeto</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="idprojeto" name="idprojeto"  value="<?Php echo $_GET['id'];?> ">                    
+                    </div> 
+                </div>       
+                <button type="submit" class="btn btn-primary">Carregar</button><br><br>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Criação de Requisito</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">                
-              <form method="POST" action="regista_requisito.php?id=".$_GET['id']." id="formRequisito">  
+              <form method="POST" action=regista_requisito.php id="formRequisito">  
                 
-                <div class="form-group row espaco">
-                
-                  <label for="Input1" class="col-sm-2 col-form-label">nome</label>
-
+                <div class="form-group row espaco">                
+                  <label for="Input1" class="col-sm-2 col-form-label">Nome</label>
                     <div class="col-sm-10">
-
-                      <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome do Requisito">
-              
+                      <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome do Requisito">              
                     </div>
                 </div>
-
                 <div class="form-group row espaco">
-
-                  <label for="Input1" class="col-sm-2 col-form-label">custo</label>
-
-                    <div class="col-sm-10">
-
-                      <input type="number" class="form-control" id="custo" name="custo" placeholder="Insira o custo do Requisito">
-              
-                    </div>
+                  <label for="Input1" class="col-sm-2 col-form-label">Id_projeto</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" id="idprojeto" name="idprojeto"  value="<?Php echo $_GET['id'];?> ">                    
+                    </div> 
                 </div>
-
-                <div class="form-group row espaco">
-
-                  <label for="Input1" class="col-sm-2 col-form-label">datainicio</label>
-
-                    <div class="col-sm-10">
-
-                      <input type="date" class="form-control" id="datainicio" name="datainicio" >
-              
-                    </div>
-                </div>
-
                 <div class="form-group row">
 
-                  <label for="ControlTextarea1" class="col-sm-2 col-form-label">descricao</label>
+                  <label for="ControlTextarea1" class="col-sm-2 col-form-label">Descricao</label>
 
                     <div class="col-sm-7">
 
-                      <textarea class="form-control" id="descricao" rows="3" name="descricao"></textarea>
+                      <textarea class="form-control" id="descricao" rows="4" name="descricao"></textarea>
 
                     </div>
 
@@ -124,7 +201,7 @@
 
                 <div class="form-group row">
 
-                  <label for="Select1" class="col-sm-2 col-form-label">tipo</label>
+                  <label for="Select1" class="col-sm-2 col-form-label">Tipo</label>
 
                     <div class="col-sm-5">
 
@@ -141,30 +218,7 @@
                     </div>
 
                 </div>
-
-                <div class="form-group row">
-
-                  <label for="Select1" class="col-sm-2 col-form-label">prioridade</label>
-
-                    <div class="col-sm-5">
-
-                      <select class="form-control" id="prioridade" name="prioridade">
-
-                        <option>1</option>
-
-                        <option>2</option>
-
-                        <option>3</option>
-
-                        <option>4</option>
-
-                        <option>5</option>
-                                  
-                      </select>
-
-                    </div>
-
-                </div>
+                
 
                 <button type="submit" class="btn btn-primary ">Carregar</button>
                 <br></br>
@@ -179,12 +233,10 @@
 
 
       
-        
-
-        
-        <div class="col-lg-12">
-          
-
+        <div class="col-lg-4">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" style="text-right">
+            Adicionar requisito
+          </button>
         </div>
 
         

@@ -71,6 +71,11 @@
 
         
         <div class="col-lg-12">
+        <div class="text-left text-primary " style="font-weight: bold" >
+          Ativo = 0  requisito encontra-se votado(indisponivel para alterações)<p>
+          Ativo = 1  requisito disponível para voto
+          </div>
+        <br>
           <table class="table border border-dark">
             <thead class="cor2 text-white">
               <tr>
@@ -106,7 +111,8 @@
                     echo"<td>".$row['tipo']."</td>";
                     echo"<td>".$row['voto']."</td>";
                     echo"<td>".$row['ativo']."</td>";
-                    echo "<td><a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#modalinserir'>Votar</td>";
+                    echo " <td><a onclick='myFunction()' class='btn btn-primary badge badge-pill badge-danger' href=atualizar_requisito.php?id=".$row['id'].">Concluir</a> 
+                    <a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#modalinserir'>Votar</td>";
                     
                   }    
                 
@@ -129,7 +135,7 @@
             </div>
             <div class="modal-body">
 
-            <form method="POST" action="insercacao_avaliacao_by_utilizador.php">
+            <form method="POST" action="insercacao_avaliacao_by_utilizador.php?id=.$row['id'].">
                 
                 <div class="form-group row espaco">
                   <label for="Input1" class="col-sm-2 col-form-label">Valor do Voto</label>

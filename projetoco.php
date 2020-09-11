@@ -7,7 +7,7 @@
     
 	$conn = mysqli_connect($host, $usuario, $senha, $database);
 
-	$sql = "SELECT * FROM  requisito";
+	$sql = "SELECT tipo, count(*) as number from requisito group by prioridade" ;
 					
   $result = $conn->query($sql);
    
@@ -51,18 +51,20 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart(){
         var data = google.visualization.arrayToDataTable([
-          ['Tipo', 'Prioridade'],
+          ['tipo', 'Prioridade'],
           <?php
-          while ($row = mysqli_fetch_array($result)){
-            echo "['".$row["tipo"]."', ".$row["prioridade"]."],";
+          $sql = "SELECT * FROM requisito";
+          $fire = mysqli_query($con ,$sql);
+          while ($result = mysqli_fetch_array($fire)){
+            echo "['".$result["tipo"]."', ".$result["prioridade"]."],";
           }
           ?>
         ]);
         var options = {
           title: 'Número de Requisitos e Prioridade'
           };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'))
-        chart.draw(data, options)
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
         } 
 
   </script> 
@@ -74,8 +76,7 @@
     <nav class="navbar fixed-top  navcor rcorners">          
         <a class="navbar-brand" href="#"><img src="imagens/logo.png"></a>
         <ul class="av justify-content-end">
-          <a type="button" class="btn" style="color: white;" href="projeto.php">HOME </a>
-          <a type="button" class="btn" style="color: white;" href="avaliacao.php">AVALIAÇÃO</a>
+          <a type="button" class="btn" style="color: white;" href="projetoco.php" disabled=true>HOME </a>
         </ul>
       </nav>
     
@@ -128,13 +129,7 @@
                   </div>
                 </div>
 
-                <div class="list-group">
-                <a  href="#team" class="cor3 list-group-item ">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-                </svg> Equipas
-                </a>
-                </div>
+               
 
                 <div class="list-group">
                 <a  href="#avaliacao" class="cor3 list-group-item ">
@@ -357,10 +352,7 @@
             </tbody>                    
           </table>
           <br>
-
-          <div class="text-right">
-            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal" >Criar Projeto</button>
-          </div>
+         
 
           <br>
 
@@ -395,123 +387,7 @@
 
         </section><br>
 
-        <div class="row">
-
-          <section class="col-lg-11 border border-dark" id="team">
-            
-            <br>
-            <div class="text-right">
-              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modalteam" >Criar Equipa</button>
-            </div>
-            <br>
-
-            <div id="modalteam" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">>
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Novo Equipa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-
-                    <form method="POST" action="regista_equipa.php" id="formEquipa">                                            
-                      
-                      <div class="form-group row espaco">
-                        <label for="Input1" class="col-sm-2 col-form-label">nome</label>
-                        <div class="col-sm-5">
-                          <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome da equipa">                                
-                        </div>
-                      </div>
-
-                      
-                      <div class="form-group">
-						            <input type="file" class="custom-file" id="img" name="img" required="requiored">	
-					            </div>
-                    
-
-                      <button name="uploadfilesub" type="submit" class="btn btn-primary">Carregar</button>
-                       <br></br>
-
-                    </form>                                
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              
-
-            <form action="" method="post" enctype="multipart/form-data">
-                <table class="table border border-dark">
-                  <thead class="thead-dark">
-                    <tr>
-                      <th>Id</th>
-                      <th>Nome</th>
-                      <th>Img</th>
-                      <th>Criado Por</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                  
-                  <?php
-                
-                $conn = mysqli_connect($host, $usuario, $senha, $database);
-
-                  $sql = "SELECT * FROM  equipa";
-                  
-                  $record = mysqli_query($conn, $sql);
-                  
-                  while ($row =mysqli_fetch_array($record)){
-
-                    echo"<tr>";
-                    echo"<td>".$row['id']."</td>";
-                    echo"<td>".$row['nome']."</td>";
-                    echo"<td>".$row['img']."</td>";
-                    echo "<td>".$row['idutilizador']."</td>";
-                    
-                  }                
-                
-                ?> 
-
-                  </tbody>
-                </table>
-            </form>
-
-            <div class="col-md-4 grid-margin stretch-card ">
-                    <div class="card bg-dark text-white" >
-                        <div class="card-body pb-0">
-
-                            <div class="d-flex justify-content-between">
-                                <h4 class="card-title mb-0">Total de Equipas</h4>
-                            </div>
-                            <h3 class="font-weight-medium">
-                            
-                              <?php
-                              
-                                $sql= "SELECT * FROM equipa";
-                                $result = $conn->query($sql);
-                                $total = $result->num_rows;
-                                echo $total.'</b>';
-                          
-                              ?> 
-                            
-                            
-                            </h3>
-                        </div>
-                        <canvas class="mt-n3" height="90" id="total-transaction"></canva>
-                    </div><br>
-
-                </div>
-
-          </section>
-            
-        </div><br>
+       
 
         <div class="row">
           <section id="avaliacao" class="col-lg-11 border border-dark"><br>
@@ -643,19 +519,7 @@
 
     <hr class="w-100 clearfix d-md-none">
 
-    <!-- Grid column -->
-    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-      <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
-      <p>
-        <a href="#!">Your Account</a>
-      </p>
-      <p>
-        <a href="#!">Become an Affiliate</a>
-      </p>     
-      <p>
-        <a href="#!">Help</a>
-      </p>
-    </div>
+    
 
     <!-- Grid column -->
     <hr class="w-100 clearfix d-md-none">

@@ -6,8 +6,7 @@ $nome =  $_POST['nome'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 
-$img = $_POST['img'];
-$upload = "upload/".$img;
+
 
 
 
@@ -15,7 +14,7 @@ $upload = "upload/".$img;
 $objDb = new db();
 $link = $objDb->conecta_mysql();
 
-$sql = "insert into utilizador(nome, email, senha, img) values('$nome','$email','$senha','$upload')";
+$sql = "insert into utilizador(nome, email, senha) values('$nome','$email','$senha')";
 
 
 //executar a query

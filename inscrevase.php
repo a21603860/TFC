@@ -78,11 +78,7 @@
 
 					</div>
 
-					<div class="form-group">						
-						
-						<input type="file" class="custom-file" id="img" name="img" required="requiored">						
 					
-					</div>
 					<br>
 
 					<div class="form-group row">

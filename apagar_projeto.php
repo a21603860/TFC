@@ -12,7 +12,7 @@ include_once'connection.php';
 
 
     if(mysqli_query($conn,$sql)){
-        echo "projeto Inativo com sucesso";
+        echo "projeto Inativado com sucesso";
         header("refresh:1; url=projetoco.php");
     }else{
 

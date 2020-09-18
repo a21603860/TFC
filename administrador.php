@@ -214,13 +214,13 @@
         </div>
 
 
-      
+      <!--
         <div class="col-lg-4">
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" style="text-right">
             ######
           </button>
         </div>
-
+        -->
         
         
         <div class="col-lg-12">
@@ -272,6 +272,7 @@
                 <th scope="col">Descricao</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Prioridade</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Ação</th>
               </tr>
             </thead>
@@ -281,7 +282,7 @@
                 
                 $conn = mysqli_connect($host, $usuario, $senha, $database);
 
-                  $sql = "SELECT * FROM  requisito WHERE prioridade>0";
+                  $sql = "SELECT * FROM  requisito ";
                   
                   $record = mysqli_query($conn, $sql);
                   
@@ -295,6 +296,7 @@
                     echo"<td>".$row['descricao']."</td>";
                     echo"<td>".$row['tipo']."</td>";
                     echo"<td>".$row['prioridade']."</td>";
+                    echo"<td>".$row['estado']."</td>";
                     echo "<td><a href=apagardadb.php?id=".$row['id'].">Delete</a><a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#edit'>Edit</td>";
                     
                   }                

@@ -75,7 +75,6 @@
 		
 				<div class="modal-footer">
           			<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          			<a href="opcoes_login.html"><button type="button" class="btn btn-capa">Entrar</button></a>
         		</div>
       		</div>
     	</div>

@@ -14,7 +14,7 @@ $link = $objDb->conecta_mysql();
 
    //executar a query
 if(mysqli_query($link,$query)){
-    echo'requisito registado com sucesso';
+    echo'Voto Atribuido';
     //header("refresh:1; url=avaliacao.php");
 }else{
     echo'erro ao registar requisito';

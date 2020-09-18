@@ -7,7 +7,7 @@
     
 	$conn = mysqli_connect($host, $usuario, $senha, $database);
 
-	$sql = "SELECT tipo, count(*) as number from requisito group by prioridade" ;
+	$sql = "SELECT tipo, count(*) as number from requisito group by custo" ;
 					
   $result = $conn->query($sql);
    
@@ -51,17 +51,17 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart(){
         var data = google.visualization.arrayToDataTable([
-          ['tipo', 'Prioridade'],
+          ['tipo', 'custo'],
           <?php
           $sql = "SELECT * FROM requisito";
           $fire = mysqli_query($con ,$sql);
           while ($result = mysqli_fetch_array($fire)){
-            echo "['".$result["tipo"]."', ".$result["prioridade"]."],";
+            echo "['".$result["tipo"]."', ".$result["custo"]."],";
           }
           ?>
         ]);
         var options = {
-          title: 'Número de Requisitos e Prioridade'
+          title: 'Tipo de Requisitos e Custo'
           };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
@@ -151,9 +151,9 @@
 
             <section class="col-md-8 border border-dark"  id="dashboard">
 
-            <div id="piechart" style="width: 500px; height: 500px;">
-               
-            </div><br>
+              <div id="piechart" style="width: 500px; height: 500px;">
+                
+              </div><br>
               
               <br>                       
             </section>
@@ -294,7 +294,6 @@
             </thead>
             <tbody>
               <tr>
-
                 
                 <script>
                   function myFunction() {
@@ -302,12 +301,9 @@
                   }
                 </script>
 
-                <?php
-
+                <?php                
                 
-                
-                  $conn = mysqli_connect($host, $usuario, $senha, $database);
-                  
+                  $conn = mysqli_connect($host, $usuario, $senha, $database);                  
 
                   $sql = "SELECT * FROM  projeto ";
                   
@@ -332,8 +328,6 @@
 
                         
                   $record = mysqli_query($conn, $sql);
-
-
                         
                   while ($row =mysqli_fetch_array($record)){
                     
@@ -344,7 +338,7 @@
                     echo"<td>".$row['nome']."</td>";
                     echo"<td>".$row['datainicio']."</td>";
                     echo"<td>".$row['datafim']."</td>";                    
-                    echo"<td>".$row['activo']."</td>";
+                    echo"<td>".$row['activo1']."</td>";
                     echo"<td>".$row['custo']."</td>";
                     echo "<td><a onclick='myFunction()' class='btn btn-primary badge badge-pill badge-danger' href=apagar_projeto.php?id=".$row['id'].">Apagar</a>
                     <a class='btn btn-primary badge badge-pill badge-primary' href=editar_projeto.php?id=".$row['id']." >Editar</td>";
@@ -515,104 +509,104 @@
         <div class="row">
           <section id="avaliacao" class="col-lg-11 border border-dark"><br>
 
-          <table class="table border border-dark">
-            <thead class="cor2 text-white">
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Custo</th>
-                <th scope="col">Data Inicio</th>
-                <th scope="col">Descricao</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Prioridade</th>
-                <th scope="col">Estado</th>
-                <th scope="col">voto</th>
-              </tr>
-            </thead>
-            
-            <tbody>   
-              <?php
-                
-                $conn = mysqli_connect($host, $usuario, $senha, $database);
-
-                  $sql = "SELECT * FROM requisito where estado = 'Aprovado'  ORDER BY voto DESC";
+            <table class="table border border-dark">
+              <thead class="cor2 text-white">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Custo</th>
+                  <th scope="col">Data Inicio</th>
+                  <th scope="col">Descricao</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Prioridade</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">voto</th>
+                </tr>
+              </thead>
+              
+              <tbody>   
+                <?php
                   
-                  $record = mysqli_query($conn, $sql);
-                  
-                  while ($row =mysqli_fetch_array($record)){
+                  $conn = mysqli_connect($host, $usuario, $senha, $database);
 
-                    echo"<tr>";
-                    echo"<td>".$row['id']."</td>";
-                    echo"<td>".$row['nome']."</td>";
-                    echo"<td>".$row['custo']."</td>";
-                    echo"<td>".$row['datainicio']."</td>";
-                    echo"<td>".$row['descricao']."</td>";
-                    echo"<td>".$row['tipo']."</td>";
-                    echo"<td>".$row['prioridade']."</td>";
-                    echo "<td>".$row['estado']."</td>";
-                    echo "<td>".$row['voto']."</td>";
+                    $sql = "SELECT * FROM requisito where estado = 'Aprovado'  ORDER BY prioridade DESC";
                     
-                  }                
-                
-                ?> 
+                    $record = mysqli_query($conn, $sql);
+                    
+                    while ($row =mysqli_fetch_array($record)){
 
-            </tbody>
-          </table><br>
+                      echo"<tr>";
+                      echo"<td>".$row['id']."</td>";
+                      echo"<td>".$row['nome']."</td>";
+                      echo"<td>".$row['custo']."</td>";
+                      echo"<td>".$row['datainicio']."</td>";
+                      echo"<td>".$row['descricao']."</td>";
+                      echo"<td>".$row['tipo']."</td>";
+                      echo"<td>".$row['prioridade']."</td>";
+                      echo "<td>".$row['estado']."</td>";
+                      echo "<td>".$row['voto']."</td>";
+                      
+                    }                
+                  
+                  ?> 
 
-          <div class="col-md-4 grid-margin stretch-card ">
-            <div class="card cor2 text-white">
-              <div class="card-body pb-0">
+              </tbody>
+            </table><br>
 
-                <div class="d-flex justify-content-between ">
-                  <h4 class="card-title mb-0">Total de Requisitos Aprovados</h4>
-                </div>
+            <div class="col-md-4 grid-margin stretch-card ">
+              <div class="card cor2 text-white">
+                <div class="card-body pb-0">
 
-                <h3 class="font-weight-medium mb-4">
-                            
-                <?php
+                  <div class="d-flex justify-content-between ">
+                    <h4 class="card-title mb-0">Total de Requisitos Aprovados</h4>
+                  </div>
 
-                  $sql= "SELECT estado FROM requisito where estado = 'Aprovado'";
-                  $result = $conn->query($sql);
-                  $total = $result->num_rows; 
-
-                  echo $total.'</b>';
+                  <h3 class="font-weight-medium mb-4">
                               
-                ?>                           
-                            
-                </h3>
-              </div>
-              <canvas class="mt-n4" height="90" id="total-revenue"></canva>                        
-            </div><br>                     
-          </div>
+                  <?php
 
-          <div class="col-md-4 grid-margin stretch-card ">
-            <div class="card cor2 text-white">
-              <div class="card-body pb-0">
+                    $sql= "SELECT estado FROM requisito where estado = 'Aprovado' ";
+                    $result = $conn->query($sql);
+                    $total = $result->num_rows; 
 
-                <div class="d-flex justify-content-between ">
-                  <h4 class="card-title mb-0">Total de Requisitos </h4>
-                </div>
-
-                <h3 class="font-weight-medium mb-4">
-                            
-                <?php
-
-                  $sql= "SELECT * FROM requisito ";
-                  $result = $conn->query($sql);
-                  $total = $result->num_rows; 
-
-                  echo $total.'</b>';
+                    echo $total.'</b>';
+                                
+                  ?>                           
                               
-                ?>                           
-                            
-                </h3>
-              </div>
-              <canvas class="mt-n4" height="90" id="total-revenue"></canva>                        
-            </div><br>                     
-          </div>
+                  </h3>
+                </div>
+                <canvas class="mt-n4" height="90" id="total-revenue"></canva>                        
+              </div><br>                     
+            </div>
 
-          </section>
-        </div>
+            <div class="col-md-4 grid-margin stretch-card ">
+              <div class="card cor2 text-white">
+                <div class="card-body pb-0">
+
+                  <div class="d-flex justify-content-between ">
+                    <h4 class="card-title mb-0">Total de Requisitos </h4>
+                  </div>
+
+                  <h3 class="font-weight-medium mb-4">
+                              
+                  <?php
+
+                    $sql= "SELECT * FROM requisito ";
+                    $result = $conn->query($sql);
+                    $total = $result->num_rows; 
+
+                    echo $total.'</b>';
+                                
+                  ?>                           
+                              
+                  </h3>
+                </div>
+                <canvas class="mt-n4" height="90" id="total-revenue"></canva>                        
+              </div><br>                     
+            </div>
+
+        </section>
+      </div>
         
     </div>
       

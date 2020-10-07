@@ -102,7 +102,7 @@
                   
                   while ($row =mysqli_fetch_array($record)){
                           
-
+                    
 
                     echo"<tr>";
                     echo"<td>".$row['id']."</td>";
@@ -110,7 +110,7 @@
                     echo"<td>".$row['descricao']."</td>";
                     echo"<td>".$row['tipo']."</td>";
                     echo"<td>".$row['voto']."</td>";
-                    echo"<td>".$row['ativo']."</td>";
+                    echo"<td>".$row['activo']."</td>";
                     echo " <td><a onclick='myFunction()' class='btn btn-primary badge badge-pill badge-danger' href=atualizar_requisito.php?id=".$row['id'].">Concluir</a> 
                     <a class='btn btn-primary badge badge-pill badge-primary' data-toggle='modal' data-target='#modalinserir'>Votar</td>";
                     

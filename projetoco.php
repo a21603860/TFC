@@ -6,11 +6,15 @@
   
     
 	$conn = mysqli_connect($host, $usuario, $senha, $database);
-
-	$sql = "SELECT tipo, count(*) as number from requisito group by custo" ;
-					
-  $result = $conn->query($sql);
-   
+  /*
+  $query="SELECT id FROM projeto";
+  $result= mysqli_query($conn, $query);
+  if (mysqli_fetch_assoc($result)) {
+    while ($row = mysql_fetch_array($result)){
+      $_SESSION['idprojeto']= $row['id'];
+    }
+  }
+  */
 	
 ?>
 
@@ -88,7 +92,7 @@
         if(isset($_SESSION['User']))
         {
           echo ' Bem Vindo ' . $_SESSION['User'].'<br/>';
-          echo '<a href="index.php?logout">Logout</a>';
+          echo '<a href="logout.php">Logout</a>';
         }else{
             header("location:index.php");
         }
@@ -338,7 +342,7 @@
                     echo"<td>".$row['nome']."</td>";
                     echo"<td>".$row['datainicio']."</td>";
                     echo"<td>".$row['datafim']."</td>";                    
-                    echo"<td>".$row['activo1']."</td>";
+                    echo"<td>".$row['activo']."</td>";
                     echo"<td>".$row['custo']."</td>";
                     echo "<td><a onclick='myFunction()' class='btn btn-primary badge badge-pill badge-danger' href=apagar_projeto.php?id=".$row['id'].">Apagar</a>
                     <a class='btn btn-primary badge badge-pill badge-primary' href=editar_projeto.php?id=".$row['id']." >Editar</td>";
@@ -515,7 +519,6 @@
                   <th scope="col">Id</th>
                   <th scope="col">Nome</th>
                   <th scope="col">Custo</th>
-                  <th scope="col">Data Inicio</th>
                   <th scope="col">Descricao</th>
                   <th scope="col">Tipo</th>
                   <th scope="col">Prioridade</th>
@@ -529,7 +532,7 @@
                   
                   $conn = mysqli_connect($host, $usuario, $senha, $database);
 
-                    $sql = "SELECT * FROM requisito where estado = 'Aprovado'  ORDER BY prioridade DESC";
+                    $sql = "SELECT * FROM requisito  ORDER BY prioridade DESC";
                     
                     $record = mysqli_query($conn, $sql);
                     
@@ -539,7 +542,6 @@
                       echo"<td>".$row['id']."</td>";
                       echo"<td>".$row['nome']."</td>";
                       echo"<td>".$row['custo']."</td>";
-                      echo"<td>".$row['datainicio']."</td>";
                       echo"<td>".$row['descricao']."</td>";
                       echo"<td>".$row['tipo']."</td>";
                       echo"<td>".$row['prioridade']."</td>";

@@ -8,13 +8,11 @@ $custo = $_POST['custo'];
 $datainicio = $_POST['datainicio'];
 $datafim = $_POST['datafim'];
 
-
-
 $objDb = new db();
 $link = $objDb->conecta_mysql();
 
 
-$sql = "insert into projeto(criadopor, nome, custo, datainicio, datafim) values('$criadopor','$nome','$custo','$datainicio','$datafim')";
+$sql = "INSERT INTO projeto(criadopor, nome, custo, datainicio, datafim) values('$criadopor','$nome','$custo','$datainicio','$datafim')";
 
 
 //executar a query

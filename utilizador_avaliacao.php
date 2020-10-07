@@ -36,7 +36,7 @@
       <nav class="navbar fixed-top  navcor rcorners">          
         <a class="navbar-brand" href="#"><img src="imagens/logo.png"></a>
         <ul class="av justify-content-end">
-          <a type="button" class="btn" style="color: white;" href="projeto.php">HOME </a>
+          <a type="button" class="btn" style="color: white;" href="projetoco.php">HOME </a>
           <a type="button" class="btn" style="color: white;" href="#">AVALIAÇÃO</a>
         </ul>
       </nav>
